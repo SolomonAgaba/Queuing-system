@@ -1,0 +1,24 @@
+{
+  "format": "side-by-side",
+  "slideDurationMs": 8000,
+  "lowerThird": {
+    "everyMs": 120000,
+    "visibleMs": 10000
+  },
+  "slides": [
+    {
+      "id": "seed-1",
+      "title": "Free health screening camp",
+      "body": "Every Saturday this month, main lobby, 9am to 1pm",
+      "image": "",
+      "qrTarget": ""
+    },
+    {
+      "id": "seed-2",
+      "title": "New maternity wing now open",
+      "body": "Book a tour with our front desk team",
+      "image": "",
+      "qrTarget": ""
+    }
+  ]
+}

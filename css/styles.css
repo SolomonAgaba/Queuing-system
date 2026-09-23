@@ -1,0 +1,180 @@
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #0b0b0b;
+  color: #f2f2f0;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  overflow: hidden;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#top-bar {
+  flex: 0 0 auto;
+  padding: 1.2vh 2vw;
+  font-size: 2.2vh;
+  font-weight: 600;
+  border-bottom: 1px solid #262626;
+  background: #111;
+}
+
+/* ---------- Content area: holds the token board plus whichever
+   ad format is active ---------- */
+
+#content {
+  flex: 1 1 auto;
+  position: relative;
+  min-height: 0;
+}
+
+#token-board {
+  height: 100%;
+  display: grid;
+  gap: 1px;
+  background: #262626;
+}
+
+.room-col {
+  background: #141414;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.room-header {
+  padding: 0.8vh 0.4vw;
+  text-align: center;
+  font-size: 1.8vh;
+  font-weight: 600;
+  border-bottom: 1px solid #262626;
+  background: #1a1a1a;
+}
+
+.room-viewport { position: relative; overflow: hidden; }
+.room-track { will-change: transform; }
+
+.token-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.4vh;
+  font-weight: 600;
+}
+.token-row:first-child { color: #6fb8ff; }
+
+/* ================================================================
+   Format 1: side-by-side (double box)
+   Token board and ad box permanently visible next to each other.
+   ================================================================ */
+
+#app[data-ad-format="side-by-side"] #content {
+  display: flex;
+  height: 100%;
+}
+#app[data-ad-format="side-by-side"] #token-board { flex: 3 1 0; }
+#app[data-ad-format="side-by-side"] .ad-box {
+  flex: 1 1 0;
+  display: flex;
+  border-left: 1px solid #262626;
+}
+
+/* ================================================================
+   Format 2: L-bar / squeezeback
+   Token board scaled down slightly, framed by an L-shaped strip
+   (right side + bottom) carrying the ad creative and QR code.
+   ================================================================ */
+
+#app[data-ad-format="lbar"] #content { padding: 0 18vw 14vh 0; }
+#app[data-ad-format="lbar"] #token-board { height: 100%; }
+
+#app[data-ad-format="lbar"] .ad-box.lbar-right {
+  position: absolute;
+  top: 0; right: 0; bottom: 14vh; width: 18vw;
+  border-left: 1px solid #262626;
+  display: flex;
+}
+#app[data-ad-format="lbar"] .ad-box.lbar-bottom {
+  position: absolute;
+  left: 0; right: 0; bottom: 0; height: 14vh;
+  border-top: 1px solid #262626;
+  display: flex;
+}
+
+/* ================================================================
+   Format 3: lower-third
+   Token board stays full screen; a semi-transparent banner slides
+   up from the bottom periodically, then slides away again.
+   ================================================================ */
+
+#app[data-ad-format="lower-third"] .ad-box {
+  position: absolute;
+  left: 0; right: 0; bottom: 0; height: 16vh;
+  background: rgba(10, 10, 10, 0.88);
+  border-top: 1px solid rgba(255,255,255,0.15);
+  display: flex;
+  transform: translateY(100%);
+  transition: transform 900ms ease;
+}
+#app[data-ad-format="lower-third"] .ad-box.visible {
+  transform: translateY(0);
+}
+
+/* ---------- Ad box inner content (shared across formats) ---------- */
+
+.ad-content {
+  display: flex;
+  align-items: center;
+  gap: 1.5vw;
+  padding: 1.2vh 1.5vw;
+  width: 100%;
+}
+.ad-text { flex: 1 1 auto; min-width: 0; }
+.ad-title {
+  font-size: 2.1vh;
+  font-weight: 600;
+  margin-bottom: 0.6vh;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.ad-body {
+  font-size: 1.6vh;
+  color: #c9c9c6;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.ad-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+}
+.ad-qr {
+  flex: 0 0 auto;
+  background: #fff;
+  padding: 4px;
+  border-radius: 4px;
+  line-height: 0;
+}
+.ad-qr svg { display: block; width: 8vh; height: 8vh; }
+
+/* side-by-side / L-bar stack the image above text since the box is
+   narrower than it is wide */
+#app[data-ad-format="side-by-side"] .ad-content,
+#app[data-ad-format="lbar"] .ad-box.lbar-right .ad-content {
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+#app[data-ad-format="side-by-side"] .ad-title,
+#app[data-ad-format="side-by-side"] .ad-body,
+#app[data-ad-format="lbar"] .ad-title,
+#app[data-ad-format="lbar"] .ad-body {
+  white-space: normal;
+}

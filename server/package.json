@@ -1,0 +1,13 @@
+{
+  "name": "hospital-token-display-server",
+  "version": "1.0.0",
+  "description": "Serves the waiting-area display, the ad admin panel, and the ad configuration API.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1"
+  }
+}

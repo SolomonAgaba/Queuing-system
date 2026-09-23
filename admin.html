@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ad settings - Waiting Area Display</title>
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <header>
+    <h1>Waiting area ad settings</h1>
+    <div id="save-status"></div>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>Display format</h2>
+      <p class="hint">Controls how ads appear alongside the token board on every screen. The token board is never fully hidden in any format.</p>
+      <div class="format-options" id="format-options"></div>
+
+      <div id="lower-third-settings" class="sub-settings" hidden>
+        <label>Show every (seconds)
+          <input type="number" id="lt-every" min="10" step="5">
+        </label>
+        <label>Visible for (seconds)
+          <input type="number" id="lt-visible" min="3" step="1">
+        </label>
+      </div>
+
+      <label>Slide duration (seconds, for side-by-side / L-bar)
+        <input type="number" id="slide-duration" min="3" step="1">
+      </label>
+    </section>
+
+    <section class="panel">
+      <h2>Ad slides</h2>
+      <p class="hint">Each slide can have a title, message, an uploaded graphic, and/or a QR code linking anywhere you like (a booking page, a form, more info).</p>
+      <div id="slides-list"></div>
+      <button id="add-slide" type="button">+ Add slide</button>
+    </section>
+
+    <button id="save-all" type="button" class="primary">Save changes</button>
+  </main>
+
+  <template id="slide-template">
+    <div class="slide-card">
+      <div class="slide-card-header">
+        <span class="slide-number"></span>
+        <button type="button" class="remove-slide">Remove</button>
+      </div>
+      <label>Title
+        <input type="text" class="f-title" placeholder="Free health screening camp">
+      </label>
+      <label>Message
+        <textarea class="f-body" rows="2" placeholder="Every Saturday this month, main lobby, 9am to 1pm"></textarea>
+      </label>
+      <div class="row">
+        <div class="col">
+          <label>Graphic
+            <input type="file" class="f-image-input" accept="image/png,image/jpeg,image/webp,image/gif">
+          </label>
+          <img class="f-image-preview" hidden>
+        </div>
+        <div class="col">
+          <label>QR code target URL
+            <input type="url" class="f-qr" placeholder="https://yourhospital.org/screening">
+          </label>
+          <div class="f-qr-preview"></div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <script src="js/vendor/qrcode.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

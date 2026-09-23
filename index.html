@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Waiting Area Display</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="app">
+    <div id="top-bar"><span id="hospital-name">Hospital</span></div>
+
+    <div id="content">
+      <div id="token-board"></div>
+      <!-- Ad box container(s) are injected by app.js to match the
+           active format (side-by-side / lbar / lower-third) -->
+      <div id="ad-slot"></div>
+    </div>
+  </div>
+
+  <script src="js/vendor/qrcode.js"></script>
+  <script src="js/mock-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

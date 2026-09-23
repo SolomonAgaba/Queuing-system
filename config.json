@@ -1,0 +1,15 @@
+{
+  "hospitalName": "Your Hospital Name",
+
+  "apiEndpoint": "/api/tokens",
+  "adsEndpoint": "/api/ads",
+  "pollIntervalMs": 5000,
+  "adsPollIntervalMs": 30000,
+
+  "columnsPerRow": 8,
+  "rowsVisible": 10,
+  "rowHeightPx": 34,
+
+  "holdMs": 4000,
+  "scrollTransitionMs": 1800
+}
